@@ -1,0 +1,17 @@
+diff --git a/dist/codegen/createBarrelFiles.js b/dist/codegen/createBarrelFiles.js
+index 66c455838b7d5b4fb7343e6b37aad2777d0baa2d..6fdc9556f72535b914a39fd4571b969ab700a12c 100644
+--- a/dist/codegen/createBarrelFiles.js
++++ b/dist/codegen/createBarrelFiles.js
+@@ -37,6 +37,12 @@ function createBarrelFiles(paths, { typeOnly, postfix = '', moduleSuffix = '' })
+         const namespacesExports = nestedDirs
+             .map((p) => {
+             const namespaceIdentifier = (0, lodash_1.camelCase)(p);
++
++            // local patch: prepend underscore if directory has a leading digit
++            if (/^\d/.test(namespaceIdentifier)) {
++                namespaceIdentifier = "_" + namespaceIdentifier
++            }
++            
+             if (typeOnly)
+                 return [
+                     `import type * as ${namespaceIdentifier} from './${p}';`,
