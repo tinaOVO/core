@@ -10,7 +10,8 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "format": "pnpm lint --fix",
+    "lint:fix": "pnpm lint --fix",
+    "format": "pnpm prettier . --write --ignore-path .gitignore",
     "test": "npx hardhat test",
     "prepare": "husky install"
   },
